@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffe9ef">
+<title>Gửi bạn một lời chúc 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffe9ef;--ink:#7a2e4d;--pink:#ff8fb1;--mint:#bfeedd;--sun:#ffe08a;}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:'Quicksand',sans-serif;color:var(--ink);background:
+radial-gradient(circle at 20% 20%,#fff 0 6px,transparent 7px) 0 0/60px 60px,
+radial-gradient(circle at 70% 70%,#ffc6d9 0 5px,transparent 6px) 0 0/60px 60px,var(--bg);
+overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.sticker{position:fixed;font-size:clamp(28px,5vw,52px);animation:float 5s ease-in-out infinite;pointer-events:none;user-select:none}
+@keyframes float{50%{transform:translateY(-14px) rotate(8deg)}}
+#stage{position:relative;z-index:2;width:min(92vw,560px);padding:24px}
+#wish{font-family:'Pacifico',cursive;font-size:clamp(26px,6vw,44px);line-height:1.4;min-height:3em}
+#wish .w{display:inline-block;white-space:nowrap;font-weight:inherit}
+#wish{word-break:keep-all;overflow-wrap:normal}
+#wish span{display:inline-block;opacity:0;transform:translateY(14px) scale(.8);animation:pop .5s forwards}
+@keyframes pop{to{opacity:1;transform:none}}
+#photos{display:none;flex-direction:column;align-items:center;gap:14px}
+.frame{width:min(70vw,320px);aspect-ratio:3/4;background:#fff;padding:10px 10px 36px;border-radius:10px;box-shadow:0 10px 30px #c9547f40;transform:rotate(var(--r));animation:drop .8s cubic-bezier(.2,1.4,.4,1)}
+.frame img{width:100%;height:100%;object-fit:cover;border-radius:6px;background:var(--mint)}
+.frame p{margin-top:6px;font-weight:700;font-size:15px}
+@keyframes drop{from{opacity:0;transform:translateY(-60px) rotate(0) scale(.7)}}
+#start{font:700 18px Quicksand;border:0;border-radius:99px;padding:14px 30px;background:var(--pink);color:#fff;cursor:pointer;box-shadow:0 6px 0 #d9567f}
+#start:active{transform:translateY(4px);box-shadow:0 2px 0 #d9567f}
+:root{--card:#fffafc}
+#stage{background:var(--card);border-radius:36px;border:4px dashed var(--pink);box-shadow:0 12px 0 #ffc6d9,0 20px 40px #c9547f30;padding:34px 24px}
+#stage::before,#stage::after{content:"🎀";position:absolute;font-size:44px;top:-26px}
+#stage::before{left:-14px;transform:rotate(-20deg)}#stage::after{right:-14px;transform:rotate(20deg)}
+#flags{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;justify-content:space-around;pointer-events:none}
+#flags i{width:0;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:42px solid var(--c);transform-origin:top;animation:swing 3s ease-in-out infinite alternate;animation-delay:var(--d)}
+@keyframes swing{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+.rise{position:fixed;bottom:-40px;font-size:24px;animation:rise linear forwards;pointer-events:none;z-index:1}
+@keyframes rise{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+.spark{position:fixed;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px #fff;animation:tw 2s ease-in-out infinite;pointer-events:none}
+@keyframes tw{50%{opacity:.15;transform:scale(.4)}}
+/* hiệu ứng chữ (xoay vòng theo từng lời chúc) */
+#wish.t1 span{animation:spin .6s forwards}
+#wish.t2 span{animation:drop2 .6s cubic-bezier(.3,1.6,.5,1) forwards}
+#wish.t3 span{animation:pop .5s forwards,wave 1.6s ease-in-out .6s infinite}
+#wish.t4 span{animation:blur .7s forwards}
+#wish.t5 span{animation:pop .5s forwards,rainbow 3s linear infinite}
+@keyframes spin{from{opacity:0;transform:rotate(-200deg) scale(.2)}to{opacity:1;transform:none}}
+@keyframes drop2{from{opacity:0;transform:translateY(-70px)}to{opacity:1;transform:none}}
+@keyframes wave{50%{transform:translateY(-8px)}}
+@keyframes blur{from{opacity:0;filter:blur(12px);transform:scale(1.8)}to{opacity:1;filter:none;transform:none}}
+@keyframes rainbow{0%{color:#ff5d8f}25%{color:#ffa63d}50%{color:#3dbf9f}75%{color:#7a6bff}100%{color:#ff5d8f}}
+/* hiệu ứng chuyển ảnh */
+.frame{animation:none}
+.frame.fx0{animation:drop .8s cubic-bezier(.2,1.4,.4,1)}
+.frame.fx1{animation:flip 1s ease-out}
+.frame.fx2{animation:zoomin .9s cubic-bezier(.2,1.3,.4,1)}
+.frame.fx3{animation:slideL .8s cubic-bezier(.2,1.2,.4,1)}
+.frame.fx4{animation:slideR .8s cubic-bezier(.2,1.2,.4,1)}
+.frame.fx5{animation:spiral 1s ease-out}
+.frame.fx6{animation:heart 1.1s ease-out}
+.frame.fx7{animation:blurIn 1s ease-out}
+.frame.fx8{animation:curtain 1s ease-out}
+.frame.fx9{animation:bounceUp 1s}
+.frame.bye{animation:bye .6s ease-in forwards!important}
+@keyframes flip{from{opacity:0;transform:perspective(700px) rotateY(-100deg)}}
+@keyframes zoomin{from{opacity:0;transform:scale(0) rotate(-30deg)}}
+@keyframes slideL{from{opacity:0;transform:translateX(-120vw) rotate(-20deg)}}
+@keyframes slideR{from{opacity:0;transform:translateX(120vw) rotate(20deg)}}
+@keyframes spiral{from{opacity:0;transform:rotate(720deg) scale(0)}}
+@keyframes heart{from{opacity:.4;clip-path:circle(0%)}to{clip-path:circle(80%)}}
+@keyframes blurIn{from{opacity:0;filter:blur(20px) saturate(3);transform:scale(1.4)}}
+@keyframes curtain{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes bounceUp{0%{transform:translateY(100vh)}60%{transform:translateY(-30px)}80%{transform:translateY(10px)}100%{transform:translateY(0)}}
+@keyframes bye{to{opacity:0;transform:scale(.6) rotate(15deg) translateY(40px)}}
+.frame{position:relative}
+.frame::after{content:"✨";position:absolute;top:-16px;right:-12px;font-size:30px;animation:tw 1.5s infinite}
+/* bóng bay, confetti, vệt chuột */
+.balloon{position:fixed;bottom:-120px;width:44px;height:56px;border-radius:50% 50% 48% 48%;background:var(--c);animation:rise2 linear forwards;z-index:1;pointer-events:none}
+.balloon::after{content:"";position:absolute;left:50%;top:100%;width:1.5px;height:50px;background:#c9547f80}
+@keyframes rise2{to{transform:translate(var(--x),-125vh)}}
+.conf{position:fixed;top:-20px;width:10px;height:14px;animation:fall linear forwards;z-index:5;pointer-events:none}
+@keyframes fall{to{transform:translate(var(--x),110vh) rotate(900deg)}}
+.trail,.burst{position:fixed;pointer-events:none;z-index:6}
+.trail{animation:fade .9s forwards}
+@keyframes fade{to{opacity:0;transform:translateY(24px) scale(.3)}}
+.burst{animation:bst 1s ease-out forwards}
+@keyframes bst{to{transform:translate(var(--x),var(--y)) scale(1.3);opacity:0}}
+#title{font-size:clamp(18px,4vw,26px);margin-bottom:10px;animation:wave 2s ease-in-out infinite}
+#mute{position:fixed;right:14px;bottom:14px;z-index:9;width:48px;height:48px;border:0;border-radius:50%;background:#fff;font-size:22px;cursor:pointer;box-shadow:0 4px 0 #ffc6d9,0 8px 18px #c9547f40}
+#mute:active{transform:translateY(3px)}
+#cat{position:fixed;left:8px;bottom:6px;width:clamp(90px,17vw,150px);z-index:4;cursor:pointer;animation:catbob 3s ease-in-out infinite;-webkit-tap-highlight-color:transparent}
+@keyframes catbob{50%{transform:translateY(-6px)}}
+#arm{transform-origin:114px 108px;animation:wave2 .9s ease-in-out infinite alternate}
+@keyframes wave2{from{transform:rotate(-14deg)}to{transform:rotate(26deg)}}
+#tail{transform-origin:118px 140px;animation:tail 1.6s ease-in-out infinite alternate}
+@keyframes tail{from{transform:rotate(-8deg)}to{transform:rotate(12deg)}}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 4s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+#bubble{position:absolute;left:62%;bottom:92%;white-space:nowrap;background:#fff;color:var(--ink);font-weight:700;font-size:14px;padding:6px 12px;border-radius:16px;box-shadow:0 4px 12px #c9547f30;transition:opacity .3s,transform .3s}
+#bubble::after{content:"";position:absolute;left:14px;top:100%;border:7px solid transparent;border-top-color:#fff}
+#bubble.hide{opacity:0;transform:translateY(6px)}
+#cat.jump{animation:catjump .6s}
+@keyframes catjump{40%{transform:translateY(-34px) rotate(-6deg)}}
+/* ===== TỐI ƯU ĐIỆN THOẠI ===== */
+html{-webkit-text-size-adjust:100%}
+html,body{height:100%;height:100dvh;touch-action:manipulation;overscroll-behavior:none;-webkit-user-select:none;user-select:none}
+body{padding:56px 0 calc(110px + env(safe-area-inset-bottom,0px))}
+.frame{width:min(72vw,320px,calc(60dvh*.75))}
+#mute{right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+#cat{left:calc(6px + env(safe-area-inset-left,0px));bottom:calc(4px + env(safe-area-inset-bottom,0px))}
+@media (max-width:600px){
+  #stage{width:90vw;padding:26px 16px;border-width:3px;border-radius:28px;box-shadow:0 8px 0 #ffc6d9,0 14px 26px #c9547f30}
+  #stage::before,#stage::after{font-size:34px;top:-20px}
+  #wish{font-size:clamp(22px,6.4vw,34px);line-height:1.5}
+  #start{font-size:17px;padding:14px 22px;max-width:100%}
+  #flags i{border-left-width:14px;border-right-width:14px;border-top-width:28px}
+  #flags i:nth-child(n+9){display:none}
+  #cat{width:92px}
+  #bubble{font-size:12.5px;padding:5px 10px;left:55%}
+  .sticker{opacity:.85}
+  .balloon{width:34px;height:44px}
+}
+@media (max-height:520px) and (orientation:landscape){
+  body{padding:40px 0 20px}
+  #cat{width:70px}
+  .frame{width:min(40vw,calc(70dvh*.75))}
+}
+@media (prefers-reduced-motion:reduce){.sticker,.frame,#flags i,.rise,.spark,.balloon,#title,#cat,#arm,#tail,.eye{animation:none!important}}
+</style>
+</head>
+<body>
+<script>
+// ===== CHỈNH SỬA Ở ĐÂY =====
+const NAME = "Bạn yêu";                       // tên người nhận
+const WISHES = [                               // các lời chúc hiện lần lượt
+  "Chúc mừng sinh nhật " + NAME + "! 🎂",
+  "Hơi muộn một chút, nhưng đây là món quà sinh nhật muộn dành cho bạn 🎁",
+  "Mong bạn luôn vui vẻ mỗi ngày ✨",
+  "Thật nhiều sức khỏe và bình an 🌸",
+  "Mọi điều ước đều thành hiện thực 🌈",
+  "Và đây là những khoảnh khắc đáng yêu của bạn 💖"
+];
+// ẢNH: chỉ cần bỏ ảnh vào thư mục images, đặt tên 1.jpg, 2.jpg, 3.jpg... liên tục.
+// Trang tự đếm và hiện hết, không cần khai báo từng ảnh.
+const IMG_DIR = "anh";
+const IMG_EXT = "jpg";
+const MAX_PHOTOS = 60;
+const CAPTIONS = ["Nụ cười tỏa nắng ☀️","Một ngày thật vui 💖","Mãi xinh đẹp nhé 🌸","Đáng yêu quá đi 🐰","Khoảnh khắc đáng nhớ ✨","Cười lên nào 😸"]; // lặp lại theo thứ tự
+const PHOTOS = [];  // (tuỳ chọn) muốn tự đặt chú thích riêng từng ảnh: {src:"images/1.jpg", cap:"..."}
+const STICKERS = ["🌸","⭐","🐰","🍓","☁️","🎀","🐱","🌷","🧸","💗","🍰","🦋","🐻","🍭","🧁","🐥","🌼","🎈","🐼","🍑","🐣","💫","🍒","🦄"];
+const MUSIC = "music/Talking To The Moon.mp3";               // file nhạc nền (đặt vào thư mục music/)
+// ===========================
+</script>
+
+<button id="mute" title="Bật/tắt nhạc" hidden>🔊</button>
+<div id="cat" title="Chạm vào mèo nhé!">
+  <div id="bubble">Meo~ 💕</div>
+  <svg viewBox="0 0 160 170" width="100%" aria-hidden="true">
+    <g id="tail"><path d="M118 140 Q158 130 148 92 Q144 78 134 86" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round"/></g>
+    <ellipse cx="80" cy="132" rx="44" ry="34" fill="#fff" stroke="#f3b3c8" stroke-width="3"/>
+    <ellipse cx="80" cy="140" rx="24" ry="20" fill="#fff3f7"/>
+    <ellipse cx="58" cy="162" rx="14" ry="8" fill="#fff" stroke="#f3b3c8" stroke-width="3"/>
+    <ellipse cx="102" cy="162" rx="14" ry="8" fill="#fff" stroke="#f3b3c8" stroke-width="3"/>
+    <g id="arm"><rect x="106" y="62" width="17" height="48" rx="8.5" fill="#fff" stroke="#f3b3c8" stroke-width="3"/><circle cx="114.5" cy="64" r="3" fill="#ffb3cb"/><circle cx="109" cy="72" r="2" fill="#ffb3cb"/><circle cx="120" cy="72" r="2" fill="#ffb3cb"/></g>
+    <path d="M32 50 L38 12 L64 34 Z" fill="#fff" stroke="#f3b3c8" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M128 50 L122 12 L96 34 Z" fill="#fff" stroke="#f3b3c8" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M40 38 L42 24 L54 34 Z" fill="#ffb3cb"/><path d="M120 38 L118 24 L106 34 Z" fill="#ffb3cb"/>
+    <ellipse cx="80" cy="74" rx="52" ry="42" fill="#fff" stroke="#f3b3c8" stroke-width="3"/>
+    <g class="eye"><ellipse cx="58" cy="72" rx="5.5" ry="7" fill="#7a2e4d"/><circle cx="60" cy="69" r="2" fill="#fff"/></g>
+    <g class="eye"><ellipse cx="102" cy="72" rx="5.5" ry="7" fill="#7a2e4d"/><circle cx="104" cy="69" r="2" fill="#fff"/></g>
+    <ellipse cx="44" cy="86" rx="9" ry="5.5" fill="#ffc2d4"/><ellipse cx="116" cy="86" rx="9" ry="5.5" fill="#ffc2d4"/>
+    <path d="M76 82 L84 82 L80 87 Z" fill="#ff8fb1"/>
+    <path d="M80 87 Q74 95 68 90 M80 87 Q86 95 92 90" fill="none" stroke="#7a2e4d" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M34 78 L12 74 M34 84 L12 88 M126 78 L148 74 M126 84 L148 88" stroke="#d9a5b8" stroke-width="2" stroke-linecap="round"/>
+    <path d="M52 112 Q80 124 108 112" fill="none" stroke="#ff8fb1" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="80" cy="121" r="7" fill="#ffe08a" stroke="#e0b94a" stroke-width="2"/>
+  </svg>
+</div>
+<div id="stage">
+  <div id="title">🎁💌🎀</div>
+  <button id="start">Mở món quà sinh nhật muộn 🎁</button>
+  <h1 id="wish"></h1>
+  <div id="photos"></div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+STICKERS.forEach((s,i)=>{
+  const e=document.createElement('div');e.className='sticker';e.textContent=s;e.style.fontSize=(30+Math.random()*30)+'px';
+  e.style.left=(Math.random()*92)+'vw';e.style.top=(Math.random()*88)+'vh';
+  e.style.animationDelay=(i*-.7)+'s';document.body.appendChild(e);
+});
+const fl=document.createElement('div');fl.id='flags';
+['#ff8fb1','#ffe08a','#bfeedd','#c9b6ff','#ffb88c'].concat(['#ff8fb1','#ffe08a','#bfeedd','#c9b6ff','#ffb88c']).forEach((c,i)=>{const t=document.createElement('i');t.style.setProperty('--c',c);t.style.setProperty('--d',(i*-.4)+'s');fl.appendChild(t)});
+document.body.appendChild(fl);
+for(let i=0;i<(innerWidth<600?16:30);i++){const e=document.createElement('div');e.className='spark';e.style.left=Math.random()*100+'vw';e.style.top=Math.random()*100+'vh';e.style.animationDelay=Math.random()*2+'s';document.body.appendChild(e)}
+setInterval(()=>{const e=document.createElement('div');e.className='rise';e.textContent=['💗','💖','✨','🌸','⭐'][Math.random()*5|0];e.style.left=Math.random()*96+'vw';e.style.animationDuration=(5+Math.random()*4)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),9500)},innerWidth<600?800:500);
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const COLORS=['#ff8fb1','#ffe08a','#bfeedd','#c9b6ff','#ffb88c','#9bd8ff'];
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const M=innerWidth<600?.55:1; // giảm hiệu ứng trên điện thoại cho mượt
+function confetti(n=80){n=Math.round(n*M);for(let i=0;i<n;i++){const e=document.createElement('div');e.className='conf';
+ e.style.left=rnd(0,100)+'vw';e.style.background=COLORS[i%6];e.style.setProperty('--x',rnd(-120,120)+'px');
+ e.style.animationDuration=rnd(2.5,5)+'s';e.style.animationDelay=rnd(0,1)+'s';
+ if(i%3==0)e.style.borderRadius='50%';document.body.appendChild(e);setTimeout(()=>e.remove(),7000)}}
+function balloons(n=8){n=Math.round(n*M);for(let i=0;i<n;i++){const e=document.createElement('div');e.className='balloon';
+ e.style.setProperty('--c',COLORS[i%6]);e.style.left=rnd(2,94)+'vw';e.style.setProperty('--x',rnd(-60,60)+'px');
+ e.style.animationDuration=rnd(7,12)+'s';e.style.animationDelay=rnd(0,2)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),15000)}}
+function burst(x,y,list=['💖','✨','🌸','⭐','🎀','🍓']){for(let i=0;i<14;i++){const e=document.createElement('div');e.className='burst';
+ e.textContent=list[i%list.length];e.style.left=x+'px';e.style.top=y+'px';const a=Math.random()*6.28,d=rnd(60,170);
+ e.style.setProperty('--x',Math.cos(a)*d+'px');e.style.setProperty('--y',Math.sin(a)*d+'px');document.body.appendChild(e);setTimeout(()=>e.remove(),1100)}}
+// vệt lấp lánh theo chuột / ngón tay + chạm để thả tim
+let lastT=0;
+addEventListener('pointermove',ev=>{if(ev.pointerType==='touch'&&Date.now()-lastT<120)return;if(Date.now()-lastT<60)return;lastT=Date.now();const e=document.createElement('div');e.className='trail';
+ e.textContent=['✨','💗','🌸'][Math.random()*3|0];e.style.left=ev.clientX+'px';e.style.top=ev.clientY+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),900)});
+addEventListener('pointerdown',ev=>burst(ev.clientX,ev.clientY));
+const center=()=>{const r=$('stage').getBoundingClientRect();return [r.left+r.width/2,r.top+r.height/2]};
+
+// mèo nói chuyện + chạm vào mèo
+const SAYS=["Meo~ 💕","Chúc mừng sinh nhật!","Quà muộn nhưng thật lòng nè 🎁","Meo meo! 🐾","Cười lên nào 😸","Yêu bạn nhiều! 💖"];
+let sayI=0;
+function say(t){const b=$('bubble');b.classList.add('hide');setTimeout(()=>{b.textContent=t||SAYS[sayI++%SAYS.length];b.classList.remove('hide')},300)}
+setInterval(()=>say(),4500);
+$('cat').addEventListener('pointerdown',ev=>{ev.stopPropagation();const c=$('cat');c.classList.remove('jump');void c.offsetWidth;c.classList.add('jump');
+  const r=c.getBoundingClientRect();burst(r.left+r.width/2,r.top+10,['💖','🐾','✨','🐟']);say('Meo meo! 😻')});
+// ===== NHẠC NỀN: lặp liền mạch, không bị ngắt giữa các vòng =====
+let ctx,gain,started=false,muted=false,audio=null;
+const VOL=.7;
+function fadeIn(){ if(gain){gain.gain.setValueAtTime(0,ctx.currentTime);gain.gain.linearRampToValueAtTime(VOL,ctx.currentTime+2.5)} else if(audio){audio.volume=0;let v=0;const t=setInterval(()=>{v=Math.min(VOL,v+.05);audio.volume=v;if(v>=VOL)clearInterval(t)},150)} }
+function fallbackAudio(){ // dùng khi mở file trực tiếp (file://) hoặc trình duyệt không hỗ trợ
+  audio=new Audio(MUSIC);audio.loop=true;
+  audio.play().then(()=>{started=true;$('mute').hidden=false;fadeIn()}).catch(()=>{});
+}
+function startMusic(){
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC){fallbackAudio();return}
+  ctx=new AC();ctx.resume(); // tạo ngay trong lúc bấm nút để điện thoại cho phép
+  fetch(MUSIC).then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()})
+    .then(b=>new Promise((ok,no)=>ctx.decodeAudioData(b,ok,no)))
+    .then(buf=>{
+      gain=ctx.createGain();
+      const src=ctx.createBufferSource();src.buffer=buf;src.loop=true;
+      src.connect(gain);gain.connect(ctx.destination);src.start(0);
+      started=true;$('mute').hidden=false;fadeIn();
+    })
+    .catch(()=>{ctx.close();ctx=null;gain=null;fallbackAudio()});
+}
+function setMuted(m){muted=m;$('mute').textContent=m?'🔇':'🔊';
+  if(gain)gain.gain.value=m?0:VOL; if(audio)audio.muted=m}
+$('mute').onclick=()=>setMuted(!muted);
+document.addEventListener('visibilitychange',()=>{ // dừng nhạc khi thoát trang / khoá màn hình
+  if(!started)return;
+  if(document.hidden){ctx?ctx.suspend():audio&&audio.pause()}
+  else{ctx?ctx.resume():audio&&audio.play().catch(()=>{})}
+});
+// tự dò ảnh 1.jpg, 2.jpg... cho đến khi hết
+function findPhotos(){
+  if(PHOTOS.length)return Promise.resolve(PHOTOS);
+  return new Promise(done=>{
+    const out=[];
+    (function next(n){
+      if(n>MAX_PHOTOS)return done(out);
+      const im=new Image(),src=`${IMG_DIR}/${n}.${IMG_EXT}`;
+      im.onload=()=>{out.push({src,cap:CAPTIONS[(n-1)%CAPTIONS.length]});next(n+1)};
+      im.onerror=()=>done(out);
+      im.src=src;
+    })(1);
+  });
+}
+const photosReady=findPhotos();
+async function run(){
+  startMusic();
+  $('start').remove();$('title').remove();
+  confetti(100);balloons(10);
+  const w=$('wish');let n=0;
+  for(const line of WISHES){
+    w.className='t'+(1+n%5);n++;
+    w.innerHTML='';
+    let idx=0;
+    line.split(' ').forEach((word,wi,arr)=>{
+      const wrap=document.createElement('b');wrap.className='w';
+      [...word].forEach(ch=>{
+        const s=document.createElement('span');
+        s.textContent=ch;s.style.animationDelay=(idx++*0.05)+'s';wrap.appendChild(s);
+      });
+      w.appendChild(wrap);
+      if(wi<arr.length-1){w.appendChild(document.createTextNode(' '));idx++}
+    });
+    if(n%2==0)burst(...center());
+    await sleep(line.length*50+1900);
+  }
+  w.style.display='none';
+  const box=$('photos');box.style.display='flex';
+  let k=0;
+  const LIST=await photosReady;
+  if(!LIST.length){box.innerHTML='<div class="frame fx2" style="aspect-ratio:auto;padding:24px"><p>Chưa tìm thấy ảnh trong thư mục images 📷</p></div>';await sleep(3000)}
+  for(const p of LIST){
+    box.innerHTML='';
+    const f=document.createElement('div');f.className='frame fx'+(k%10);k++;
+    f.style.setProperty('--r',(Math.random()*8-4)+'deg');
+    f.innerHTML=`<img src="${p.src}" alt="${p.cap}" onerror="this.alt='Thêm ảnh: ${p.src}'"><p>${p.cap}</p>`;
+    box.appendChild(f);
+    setTimeout(()=>burst(...center()),500);
+    if(k%3==0)confetti(40);
+    await sleep(3400);
+    f.classList.add('bye');await sleep(600);
+  }
+  box.innerHTML='<div class="frame fx2" style="aspect-ratio:auto;padding:30px"><p style="font-size:22px">Sinh nhật vui vẻ nhé! Yêu bạn nhiều lắm 💌</p></div>';
+  confetti(150);balloons(14);burst(...center());
+}
+$('start').onclick=run; // cần bấm 1 lần để trình duyệt cho phép nhạc/hiệu ứng mượt hơn
+</script>
+</body>
+</html>
